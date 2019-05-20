@@ -1,1 +1,2 @@
-# domigon
+Domigon is a Tetris based game developed in C++ using the SDL libraries (SDL2, SDL_image, SDL_TTF).
+The particularity of this game is that you can create new blocks yourself and add them into the game.
