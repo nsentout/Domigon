@@ -9,7 +9,7 @@ namespace Domigon
 {
 
 	Button::Button(std::string text, SDL_Rect rect, TTF_Font *font, TTF_Font *hovered_font)
-		: m_text(text), m_text_rect(rect), m_font(font), m_hovered_font(hovered_font)	
+		: m_text(text), m_text_rect(rect), m_font(font), m_hovered_font(hovered_font), m_block(nullptr)
 	{
 		
 	}

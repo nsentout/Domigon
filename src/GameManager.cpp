@@ -9,7 +9,7 @@
 
 namespace Domigon
 {
-	GameManager::GameManager() {}
+	GameManager::GameManager() : m_grid(nullptr), m_currentBlock(nullptr), m_original_currentBlock(nullptr), m_random(nullptr) {}
 
 	GameManager::~GameManager() {
 		delete m_grid;
@@ -410,18 +410,12 @@ namespace Domigon
 #include "../include/Menu.h"
 #include "../include/BlockEditor.h"
 #include "../include/ResourceManager.h"
-#include "io.h"	///DELETE
 //#include <vld.h>	//check memory leak
 
 using namespace Domigon;
 
 int main(int argc, char* args[])
 {
-	// Redirect error messages to "logs.err"
-	FILE *file;
-	fopen_s(&file, "log.err", "w");
-	_dup2(_fileno(file), 2);
-
 	// Initialize the TTF engine
 	if (TTF_Init() == -1) {
 		std::cerr << "TTF could not initialize! TTF error: " << TTF_GetError() << std::endl;
@@ -562,8 +556,6 @@ int main(int argc, char* args[])
 
 	TTF_Quit();
 	SDL_Quit();
-
-	fclose(file);
 
 	return EXIT_SUCCESS;
 }
