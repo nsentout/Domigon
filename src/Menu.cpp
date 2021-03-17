@@ -8,7 +8,8 @@
 
 namespace Domigon
 {
-	Menu::Menu() : m_pressed_button(nullptr) {}
+	Menu::Menu() : m_pressed_button(nullptr), m_font(nullptr), m_hovered_font(nullptr)
+	{}
 
 
 	Menu::~Menu() {

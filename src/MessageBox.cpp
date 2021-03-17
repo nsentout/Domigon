@@ -3,7 +3,7 @@
 
 namespace Domigon
 {
-	MessageBox::MessageBox(const SDL_Rect dstrect, const std::string msg) : m_dstrect(dstrect), m_msg(msg)
+	MessageBox::MessageBox(const SDL_Rect dstrect, const std::string msg) : m_dstrect(dstrect), m_msg(msg), m_alpha(0), m_font(nullptr), m_msgrect(), m_srcrect()
 	{}
 
 	MessageBox::~MessageBox()

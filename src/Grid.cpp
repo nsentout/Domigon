@@ -6,7 +6,8 @@
 
 namespace Domigon
 {
-	Grid::Grid() {}
+	Grid::Grid() : m_grid()
+	{}
 
 	Grid::~Grid() {}
 

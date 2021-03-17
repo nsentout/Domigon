@@ -10,7 +10,8 @@ namespace Domigon
 
 	/*****************************************************************************************************************************/
 
-	ResourceManager::ResourceManager() {}
+	ResourceManager::ResourceManager() : m_device_id(), m_sounds_data(), m_sounds_length(), m_textures()
+	{}
 
 
 	ResourceManager::~ResourceManager()

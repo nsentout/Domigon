@@ -9,7 +9,12 @@
 
 namespace Domigon
 {
-	GameManager::GameManager() : m_grid(nullptr), m_currentBlock(nullptr), m_original_currentBlock(nullptr), m_random(nullptr) {}
+	GameManager::GameManager()
+		: m_grid(nullptr), m_currentBlock(nullptr), m_original_currentBlock(nullptr), m_random(nullptr),
+		m_can_hold_block(true), m_cleared_lines_nb(0), m_game_over(false), m_holdBlock(nullptr), m_level(0),
+		m_refresh_followingblocks(false), m_refresh_grid(false), m_refresh_holdblock(false), m_refresh_level(false),
+		m_refresh_score(false), m_score(0), m_speed(0.0f)
+	{}
 
 	GameManager::~GameManager() {
 		delete m_grid;

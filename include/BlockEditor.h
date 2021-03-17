@@ -16,6 +16,7 @@ namespace Domigon
 		std::list<Cell*> neighbors;
 		bool filled;
 		bool visited;
+		Cell() : neighbors(), filled(false), visited(false) {}
 	};
 
 
@@ -54,6 +55,9 @@ namespace Domigon
 
 		// Display the scene to delete existing blocks
 		void displayDeleteBlockScene();
+		
+		// Listen mouse events in the current scene
+		void listenMouseEvents(bool inMainScene, int grid_x=-1, int grid_y=-1);
 
 		/*****************************************************************************************************************************/
 

@@ -9,7 +9,9 @@
 
 namespace Domigon
 {
-	BlockEditor::BlockEditor()
+	BlockEditor::BlockEditor() 
+		: m_grid_size(0), m_pressed_button(nullptr), m_font(nullptr), m_hovered_font(nullptr), m_message_box(nullptr),
+		hovered_square_row(0), hovered_square_column(0)
 	{
 		for (int i = 0; i < m_block_data.size(); i++)
 			m_block_data[i] = new Cell();
@@ -339,29 +341,7 @@ namespace Domigon
 		SDL_RenderPresent(renderer);
 
 		// Listen mouse events //
-		int fps_lock_timer = SDL_GetTicks();
-		int msg_box_timer, msg_box_fadeout;
-
-		if (m_message_box != nullptr) {
-			m_message_box->display();
-			msg_box_timer = msg_box_fadeout = fps_lock_timer;
-		}
-
-		while (m_pressed_button == nullptr)
-		{
-			if (SDL_GetTicks() > (fps_lock_timer + (Uint32)(1000 / WindowConstants::FPS_LIMIT))) {
-				handleMouseEventsMainScene();
-				fps_lock_timer = SDL_GetTicks();
-			}
-
-			if (m_message_box != nullptr && SDL_GetTicks() > (Uint32) (msg_box_timer + BlockEditorConstants::TIME_BEFORE_FADE_OUT) && SDL_GetTicks() > (Uint32) (msg_box_fadeout + 50)) {
-				if (!m_message_box->fadeOut()) {
-					m_message_box->erase();
-					m_message_box.reset();
-				}
-				msg_box_fadeout = SDL_GetTicks();
-			}
-		}
+		listenMouseEvents(true);
 	}
 
 	/*****************************************************************************************************************************/
@@ -410,29 +390,7 @@ namespace Domigon
 		SDL_RenderPresent(renderer);
 
 		// Listen mouse events //
-		int fps_lock_timer = SDL_GetTicks();
-		int msg_box_timer, msg_box_fadeout;
-
-		if (m_message_box != nullptr) {
-			m_message_box->display();
-			msg_box_timer = msg_box_fadeout = fps_lock_timer;
-		}
-
-		while (m_pressed_button == nullptr)
-		{
-			if (SDL_GetTicks() > (fps_lock_timer + (Uint32)(1000 / WindowConstants::FPS_LIMIT))) {
-				handleMouseEventsCreationScene(grid_x, grid_y);
-				fps_lock_timer = SDL_GetTicks();
-			}
-
-			if (m_message_box != nullptr && SDL_GetTicks() > (Uint32)(msg_box_timer + BlockEditorConstants::TIME_BEFORE_FADE_OUT) && SDL_GetTicks() > (Uint32)(msg_box_fadeout + 50)) {
-				if (!m_message_box->fadeOut()) {
-					m_message_box->erase();
-					m_message_box.reset();
-				}
-				msg_box_fadeout = SDL_GetTicks();
-			}
-		}
+		listenMouseEvents(false, grid_x, grid_y);
 	}
 
 	/*****************************************************************************************************************************/
@@ -460,6 +418,40 @@ namespace Domigon
 			if (SDL_GetTicks() > (timeElapsed + (Uint32)(1000 / WindowConstants::FPS_LIMIT))) {
 				handleMouseEventsDeleteScene();
 				timeElapsed = SDL_GetTicks();
+			}
+		}
+	}
+
+	/*****************************************************************************************************************************/
+
+	void BlockEditor::listenMouseEvents(bool inMainScene, int grid_x, int grid_y)
+	{
+		int fps_lock_timer = SDL_GetTicks();
+		int msg_box_timer, msg_box_fadeout;
+		msg_box_timer = msg_box_fadeout = fps_lock_timer;
+
+		if (m_message_box != nullptr) {
+			m_message_box->display();
+		}
+
+		while (m_pressed_button == nullptr)
+		{
+			if (SDL_GetTicks() > (fps_lock_timer + (Uint32)(1000 / WindowConstants::FPS_LIMIT))) {
+				if (inMainScene) {
+					handleMouseEventsMainScene();
+				}
+				else {
+					handleMouseEventsCreationScene(grid_x, grid_y);
+				}
+				fps_lock_timer = SDL_GetTicks();
+			}
+
+			if (m_message_box != nullptr && SDL_GetTicks() > (Uint32)(msg_box_timer + BlockEditorConstants::TIME_BEFORE_FADE_OUT) && SDL_GetTicks() > (Uint32)(msg_box_fadeout + 50)) {
+				if (!m_message_box->fadeOut()) {
+					m_message_box->erase();
+					m_message_box.reset();
+				}
+				msg_box_fadeout = SDL_GetTicks();
 			}
 		}
 	}

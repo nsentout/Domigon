@@ -21,7 +21,8 @@ namespace Domigon
 
 	/*****************************************************************************************************************************/
 
-	GameWindow::GameWindow() {}
+	GameWindow::GameWindow() : m_font(nullptr), m_gamemanager(nullptr), m_width(0), m_height(0), m_hold_rect(), m_level_rect(), m_next_rect(), m_score_rect(), m_window(nullptr)
+	{}
 
 	GameWindow::~GameWindow() {
 		SDL_DestroyTexture(background);
