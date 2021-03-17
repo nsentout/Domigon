@@ -136,8 +136,10 @@ namespace Domigon
 			delete m_original_currentBlock;
 			delete m_random;
 
-			if (m_holdBlock != nullptr)
+			if (m_holdBlock != nullptr) {
 				delete m_holdBlock;
+				m_holdBlock = nullptr;
+			}
 
 			while (!m_followingblocks.empty()) {
 				m_followingblocks.front().reset();
