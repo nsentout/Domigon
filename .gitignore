@@ -29,12 +29,14 @@ ipch/
 *.cachefile
 .vs*
 
-# Project files
-
 
 ###################
 ## Miscellaneous ##
 ###################
+
+# CMake
+CMakeCache.txt
+CMakeFiles
 
 # Prerequisites
 *.d
@@ -52,7 +54,6 @@ ipch/
 # Compiled Dynamic libraries
 *.so
 *.dylib
-*.dll
 
 # Fortran module files
 *.mod
