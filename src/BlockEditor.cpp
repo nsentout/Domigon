@@ -91,6 +91,10 @@ namespace Domigon
 						int requested_grid_size = m_pressed_button->getText().at(0) - '0';
 						m_grid_size = requested_grid_size;
 
+						// There is no hovered square
+						hovered_square_row = -1;
+						hovered_square_column = -1;
+
 						// Erase old message box
 						if (m_message_box != nullptr) {
 							m_message_box->erase();
@@ -749,7 +753,9 @@ namespace Domigon
 					SDL_RenderFillRect(renderer, &rect);
 					SDL_RenderPresent(renderer);
 
-					hovered_square_row = -1;	// means there is no highlighted square
+					// There is no hovered square
+					hovered_square_row = -1;	
+					hovered_square_column = -1;
 				}
 				
 				// Buttons
@@ -761,7 +767,7 @@ namespace Domigon
 				}
 			}
 
-			// If the player left clicked, check if it was on a button //
+			// If the player left clicked, check if it was on a button or on the grid //
 			else if (e.type == SDL_MOUSEBUTTONDOWN) {
 				mouse_x = e.motion.x;
 				mouse_y = e.motion.y;
@@ -769,10 +775,11 @@ namespace Domigon
 
 				if (e.button.button == SDL_BUTTON_LEFT)
 				{
-					// Highlight the clicked square
+					// If the player clicked on the grid
 					if (mouse_x > grid_x && mouse_x < grid_x + square_width * m_grid_size
 						&& mouse_y > grid_y && mouse_y < grid_y + square_width * m_grid_size)
 					{
+						// Highlight the clicked square
 						int square_row = (int) ((mouse_y - grid_y) / square_width);
 						int square_column = (int) ((mouse_x - grid_x) / square_width);
 
@@ -790,7 +797,7 @@ namespace Domigon
 						}
 					}
 
-					// Buttons
+					// If the player cliked on a button
 					for (auto button : m_buttons)
 					{
 						if (mouse_x >= button->getHoveredRect().x && mouse_x <= button->getHoveredRect().x + button->getHoveredRect().w
