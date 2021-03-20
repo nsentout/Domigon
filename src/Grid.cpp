@@ -413,7 +413,7 @@ namespace Domigon
 
 	/*****************************************************************************************************************************/
 
-	void Grid::deleteCompletedLines()	//TODO: fait baisser les blocs pour ne pas qu'il "flotte" en gardant la structure du bloc cohérente (https://gamedevelopment.tutsplus.com/tutorials/implementing-tetris-clearing-lines--gamedev-1197, https://en.wikipedia.org/wiki/Flood_fill)
+	void Grid::deleteCompletedLines()
 	{
 		for (int completed_row : m_completed_lines) {
 

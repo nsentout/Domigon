@@ -362,6 +362,7 @@ namespace Domigon
 			break;
 
 		// DEBUG
+		/*
 		default:
 			if (e.key.keysym.sym > SDLK_0 && e.key.keysym.sym <= SDLK_0 + Block::alltypesblocks.size()) {
 				std::cout << "force new block" << std::endl;
@@ -376,13 +377,9 @@ namespace Domigon
 				m_speed -= 0.1f;
 				m_refresh_level = true;
 			}
-
+		*/
 		}
-
-		//std::cout << "data row : " << m_currentBlock->getDataRow() << " | data column : " << m_currentBlock->getDataColumn() << std::endl;
-		//std::cout << "row: " << m_currentBlock->getRow() << " | column: " << m_currentBlock->getColumn() << std::endl;
-
-		m_grid->displayTxtGrid();
+		//m_grid->displayTxtGrid();
 	}
 
 	/*****************************************************************************************************************************/
@@ -535,11 +532,6 @@ int main(int argc, char* args[])
 				BlockEditor *block_editor = new BlockEditor();
 				block_editor->display();
 				delete block_editor;	// if back button is pressed
-			}
-
-			else if (pressed_button == MenuConstants::SCORES_BUTTON)
-			{
-
 			}
 
 			else if (pressed_button == MenuConstants::EXIT_BUTTON)

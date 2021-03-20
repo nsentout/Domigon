@@ -149,9 +149,6 @@ namespace MenuConstants
 	// Edit blocks button text
 	const std::string EDIT_BLOCKS_BUTTON = "EDIT BLOCKS";
 
-	// Scores button text
-	const std::string SCORES_BUTTON = "SCORES";
-
 	// Exit button text
 	const std::string EXIT_BUTTON = "EXIT";
 

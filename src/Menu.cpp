@@ -48,12 +48,6 @@ namespace Domigon
 		m_buttons.push_back(button);
 
 		y += text_height + shift;
-		TTF_SizeText(m_font, MenuConstants::SCORES_BUTTON.c_str(), &text_width, &text_height);
-		button = new Button(MenuConstants::SCORES_BUTTON,{ WindowConstants::WIDTH / 2 - text_width / 2, y, text_width, text_height }, m_font, m_hovered_font);
-		button->init();
-		m_buttons.push_back(button);
-
-		y += text_height + shift;
 		TTF_SizeText(m_font, MenuConstants::EXIT_BUTTON.c_str(), &text_width, &text_height);
 		button = new Button(MenuConstants::EXIT_BUTTON,{ WindowConstants::WIDTH / 2 - text_width / 2, y, text_width, text_height }, m_font, m_hovered_font);
 		button->init();
